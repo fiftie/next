@@ -1,0 +1,23 @@
+html
+  head
+    meta(charset='UTF-8')
+    title next editor
+    meta(name='description' content='')
+    meta(name='viewport' content='width=device-width,initial-scale=1')
+
+  body
+    div#root
+    script(src="vendor/blockly/blockly_compressed.js")
+    script(src="vendor/blockly/blocks_compressed.js")
+    script(src="vendor/blockly/javascript_compressed.js")
+    script(src="vendor/blockly/msg/js/ja.js")
+    xml#toolbox(style="display: none")
+      block(type="controls_if")
+      block(type="controls_repeat_ext")
+      block(type="logic_compare")
+      block(type="math_number")
+      block(type="math_arithmetic")
+      block(type="text")
+      block(type="text_print")
+    //- pre#jsCode
+    script(type='text/javascript' src='dist/js/index.bundle.js')

@@ -1,0 +1,6 @@
+[submodule "client/vendor/blockly"]
+	path = client/vendor/blockly
+	url = https://github.com/google/blockly.git
+[submodule "client/vendor/closure-library"]
+	path = client/vendor/closure-library
+	url = https://github.com/google/closure-library.git
