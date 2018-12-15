@@ -9,11 +9,11 @@ const BaseButton = styled.button`
     border-radius: 3px;
 `
 
-const ShowCodeButton = BaseButton.extend`
+const ShowCodeButton = styled(BaseButton)`
     background: #668ad8;
 `
 
-const RunCodeButton = BaseButton.extend`
+const RunCodeButton = styled(BaseButton)`
     background: #58be93;
 `
 
