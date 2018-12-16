@@ -19,7 +19,8 @@ class Editor extends React.Component {
     this.state = {
       style:
         {height: 480, width: 600, float: "right"},
-      code: ""
+      code: "",
+      isRunCode: false
     };
     this.handleShowCode = this.handleShowCode.bind(this);
   }
@@ -36,17 +37,23 @@ class Editor extends React.Component {
   }
 
   handleShowCode() {
-    //this.setState({code: this.blocklyEditor.getCode()});
-    this.state.code = "";
-    this.forceUpdate()
-    this.setState({code : this.blocklyEditor.getCode()});
+    this.setState({code: this.blocklyEditor.getCode()});
+  }
+
+  handleRunCode() {
+    this.setState({code: this.blocklyEditor.getCode()});
+    this.setState({isRunCode: true});
+  }
+
+  handleOnLoad() {
+    this.setState({isRunCode: false});
   }
 
   render() {
     return (
       <div className="editor">
         <div id="blocklyDiv"></div>
-        <Canvas id="canvas" srcDoc={
+        <Canvas id="canvas" onLoad={() => this.handleOnLoad()} srcDoc={
           `<!DOCTYPE html>
           <html>
             <head>
@@ -58,8 +65,16 @@ class Editor extends React.Component {
                 window.addEventListener('message', function(event) {
                   event.source.postMessage('test', event.origin);
                 }, false);
+                function runCode() {
+                  var element = document.createElement('script');
+                  element.innerHTML = \``+this.state.code+`\`;
+                  var objBody = document.getElementsByTagName("body").item(0);
+                  objBody.appendChild(element);
+                }
+                if (`+this.state.isRunCode+`) {
+                  runCode();
+                }
               </script>
-              <script>`+this.state.code+`</script>
             </body>
           </html>`
         }></Canvas>
