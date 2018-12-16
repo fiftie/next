@@ -45,7 +45,7 @@ class Editor extends React.Component {
     this.setState({isRunCode: true});
   }
 
-  handleOnLoad() {
+  handleCanvasOnLoad() {
     this.setState({isRunCode: false});
   }
 
@@ -53,7 +53,7 @@ class Editor extends React.Component {
     return (
       <div className="editor">
         <div id="blocklyDiv"></div>
-        <Canvas id="canvas" onLoad={() => this.handleOnLoad()} srcDoc={
+        <Canvas id="canvas" onLoad={() => this.handleCanvasOnLoad()} srcDoc={
           `<!DOCTYPE html>
           <html>
             <head>
@@ -71,7 +71,7 @@ class Editor extends React.Component {
                   var objBody = document.getElementsByTagName("body").item(0);
                   objBody.appendChild(element);
                 }
-                if (`+this.state.isRunCode+`) {
+                if(`+this.state.isRunCode+`) {
                   runCode();
                 }
               </script>
