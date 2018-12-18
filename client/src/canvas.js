@@ -7,12 +7,11 @@ PIXI.loader
 var block;
 
 function setup() {
-  block = new PIXI.Sprite(PIXI.loader.resources.coffee.texture);  
-  block.anchor.x = 0.5;
-  block.anchor.y = 0.61;
-
-  block.position.x = 200;
-  block.position.y = 150;
+  block = new PIXI.Sprite(PIXI.loader.resources.coffee.texture);
+  block.position.x = 0;
+  block.position.y = 0;
+  block.scale.x = 0.5;
+  block.scale.y = 0.5;
   stage.addChild(block);
   renderer.render(stage);
   console.log("rendered");
