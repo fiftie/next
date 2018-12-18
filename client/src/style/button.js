@@ -17,4 +17,8 @@ const RunCodeButton = styled(BaseButton)`
     background: #58be93;
 `
 
-export {ShowCodeButton, RunCodeButton};
+const CloseMonitorButton = styled(BaseButton)`
+    background: #ed225d;
+`
+
+export {ShowCodeButton, RunCodeButton, CloseMonitorButton};
