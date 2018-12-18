@@ -17,8 +17,6 @@ class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      style:
-        {height: 480, width: 600, float: "right"},
       code: "",
       isRunCode: false
     };
@@ -59,7 +57,7 @@ class Editor extends React.Component {
             <head>
               <title>canvas</title>
             </head>
-            <body>
+            <body style="margin:0;padding:0">
               <script>
                 window.addEventListener('message', function(event) {
                   event.source.postMessage('test', event.origin);
@@ -76,34 +74,7 @@ class Editor extends React.Component {
               </script>
               <div id="pixiview"></div>
               <script src="vendor/pixi/pixi.min.js"></script>
-              <script>
-                var stage = new PIXI.Container();
-                var renderer = PIXI.autoDetectRenderer(500, 500);
-                document.body.appendChild(renderer.view);
-                PIXI.loader
-                  .add("coffee", "https://dl.dropboxusercontent.com/u/139992952/coffee.png")
-                  .load(setup);
-                var block;
-                
-                function setup() {
-                  block = new PIXI.Sprite(PIXI.loader.resources.coffee.texture);  
-                  block.anchor.x = 0.5;
-                  block.anchor.y = 0.61;
-                
-                  block.position.x = 200;
-                  block.position.y = 150;
-                  stage.addChild(block);
-                  renderer.render(stage);
-                  console.log("rendered");
-                  theloop();
-                }
-                
-                var theloop = function(){
-                  requestAnimationFrame(theloop);
-                  block.rotation += .03;
-                  renderer.render(stage);
-                };
-              </script>
+              <script src="src/canvas.js"></script>
             </body>
           </html>`
         }></Canvas>
