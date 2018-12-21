@@ -2,26 +2,26 @@ import React from 'react';
 
 import PopUp from './style/popup';
 import Monitor from './style/monitor';
-import {ShowCodeButton, RunCodeButton, CloseMonitorButton} from './style/button';
+import CloseMonitorButton from './style/button/closeMonitorButton';
 
 export default class Stage extends React.Component {
   constructor(props){
     super(props);
     this.state={
-      isRun: false,
+      closePopup: false,
     }
     this.iframeElem;
   }
 
   static defaultProps = {
     code: '',
-    isRun: false,
+    closePopup: false,
     onLoad: ()=>{}
   }
 
   componentDidMount() {
     this.setState({
-      isRun: this.props.isRun
+      closePopup: this.props.closePopup
     })
 
     // var ifrm = document.getElementById('stage').contentWindow;
@@ -33,14 +33,14 @@ export default class Stage extends React.Component {
   }
 
   componentDidUpdate(prevProps){
-    if (prevProps.isRun != this.props.isRun){
+    if (prevProps.closePopup != this.props.closePopup){
       this.setState({
-        isRun: this.state.isRun
+        closePopup: this.state.closePopup
       })
     }
   }
 
-  createSrcDoc(isRun, code) {
+  createSrcDoc(closePopup, code) {
     const doc = `<!DOCTYPE html>
     <html>
       <head>
@@ -51,7 +51,7 @@ export default class Stage extends React.Component {
           // window.addEventListener('message', function(event) {
           //   event.source.postMessage('test', event.origin);
           // }, false);
-          if(${isRun}) {
+          if(${closePopup}) {
             ${code}
           }
         </script>
@@ -68,13 +68,13 @@ export default class Stage extends React.Component {
   }
 
   render(){
-    const {isRun, code} = this.props;
-    const srcDoc = this.createSrcDoc(isRun, code);
+    const {closePopup, code} = this.props;
+    const srcDoc = this.createSrcDoc(closePopup, code);
     return(
       <div>
         <PopUp>
           <Monitor id="stage" scrolling="no" srcDoc={srcDoc} onLoad={()=>{this.onLoadIframe()}} ref={(ref)=>this.iframeElem = ref} />
-            <CloseMonitorButton onClick={this.props.isRun}>stageを閉じる</CloseMonitorButton>
+            <CloseMonitorButton onClick={this.props.closePopup}>stageを閉じる</CloseMonitorButton>
         </PopUp>
       </div>
     )

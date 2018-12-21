@@ -9,7 +9,8 @@ import { routerMiddleware } from 'react-router-redux';
 // import reducer from 'reducer';
 
 import BlocklyEditor from './editor';
-import {ShowCodeButton, RunCodeButton, CloseMonitorButton} from './style/button';
+import ShowCodeButton from './style/button/showCodeButton';
+import ShowPopupButton from './style/button/showPopupButton';
 import Stage from './stage';
 
 
@@ -44,15 +45,14 @@ class Editor extends React.Component {
     return (
       <div className="editor">
         <div id="blocklyDiv"></div>
-        
         <div className="button">
           <ShowCodeButton onClick={() => this.handleShowCode()}>jsを表示</ShowCodeButton>
-          <RunCodeButton onClick={() => this.togglePopup()}>stageを表示</RunCodeButton>
+          <ShowPopupButton onClick={() => this.togglePopup()}>stageを表示</ShowPopupButton>
         </div>
         <pre>{this.state.code}</pre>
         {this.state.isShowPopup ?
           <div>
-            <Stage isRun={() => this.togglePopup()} code={this.state.code} />
+            <Stage closePopup={() => this.togglePopup()} code={this.state.code} />
           </div>
           :null
         }
