@@ -10,6 +10,7 @@ const Stage = styled.div`
   bottom: 0;
   margin: auto;
   background-color: rgba(0,0,0, 0.5);
+  z-index: 100001;
 `
 
 export default Stage;

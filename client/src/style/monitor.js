@@ -9,7 +9,6 @@ const Monitor = styled.iframe`
   width: 540;
   height: 380;
   margin: auto;
-  z-index: 100000;
 `
 
 export default Monitor;

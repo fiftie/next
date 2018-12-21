@@ -11,6 +11,7 @@ export default class BlocklyEditor {
         trashcan: true,
       },
     );
+    console.log(this.workspace);
     var blocklyDiv = document.getElementById('blocklyDiv');
     var onresize = function(e) {
       blocklyDiv.style.width = 800 + 'px';
